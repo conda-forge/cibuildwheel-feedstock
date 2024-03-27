@@ -28,9 +28,7 @@ requirements:
     - bracex
     - filelock
     - platformdirs
-    - pyproject_hooks
     - click
-    - pip-tools
     - pygithub
     - pyyaml
     - requests
