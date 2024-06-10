@@ -154,4 +154,5 @@ Feedstock Maintainers
 =====================
 
 * [@MementoRC](https://github.com/MementoRC/)
+* [@henryiii](https://github.com/henryiii/)
 
