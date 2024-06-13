@@ -1,5 +1,5 @@
 {% set name = "cibuildwheel" %}
-{% set version = "2.19.0" %}
+{% set version = "2.19.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/pypa/cibuildwheel/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 80490f1d3d2ab05c8ff0ac3bfda613c175072823122acae7695d19083cff673e
+  sha256: a08119ba7f587c4d4b58e532f13e1106ece20044a1d2847930875ffa3b6660b1
 
 build:
   noarch: python
