@@ -33,6 +33,7 @@ requirements:
     - requests
     - rich >=9.6
     - packaging >=21.0
+    - dependency-groups
 
 test:
   imports:
