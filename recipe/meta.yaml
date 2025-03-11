@@ -14,15 +14,15 @@ build:
   entry_points:
     - cibuildwheel = cibuildwheel.__main__:main
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
     - hatchling
-    - python >=3.7
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - bashlex
     - bracex
     - filelock
@@ -48,6 +48,7 @@ test:
     - pytest-xdist
     - python-build
     - validate-pyproject
+    - python {{ python_min }}
   commands:
     - pip check
     - cibuildwheel --help
