@@ -46,7 +46,7 @@ tests:
       python_version: ${{ python_min }}.*
   - files:
       source:
-        - test
+        - test/
     requirements:
       run:
         - pip
