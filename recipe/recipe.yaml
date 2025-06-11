@@ -1,6 +1,7 @@
 schema_version: 1
 
 context:
+  python_min: "3.11"
   name: cibuildwheel
   version: "3.0.0"
 
@@ -29,13 +30,9 @@ requirements:
     - python >=${{ python_min }}
     - bashlex
     - bracex
+    - certifi
     - filelock
     - platformdirs
-    - click
-    - pygithub
-    - pyyaml
-    - requests
-    - rich >=9.6
     - packaging >=21.0
     - dependency-groups
 
