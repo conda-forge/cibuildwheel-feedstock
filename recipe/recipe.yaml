@@ -29,15 +29,15 @@ requirements:
   run:
     - python >=${{ python_min }}
     - bashlex
-    - build
     - bracex
     - certifi
-    - filelock
-    - platformdirs
-    - packaging
     - dependency-groups
+    - filelock
     - humanize
+    - packaging
+    - platformdirs
     - pyelftools
+    - python-build
     - wheel
 
 tests:
