@@ -33,8 +33,11 @@ requirements:
     - certifi
     - filelock
     - platformdirs
-    - packaging >=21.0
+    - packaging
     - dependency-groups
+    - humanize
+    - pyelftools
+    - wheel
 
 tests:
   - python:
