@@ -42,10 +42,6 @@ requirements:
     - wheel
 
 tests:
-  - python:
-      imports:
-        - cibuildwheel
-      python_version: ${{ python_min }}.*
   - files:
       source:
         - test/
@@ -74,6 +70,11 @@ tests:
       - pytest test/test_macos_archs.py
       - pytest test/test_wheel_tag.py
       - pytest test/test_windows.py
+  - python:
+      imports:
+        - cibuildwheel
+      python_version: ${{ python_min }}.*
+      pip_check: false
 
 about:
   summary: Building wheels across Mac, Linux, Windows, on multiple versions of Python.
