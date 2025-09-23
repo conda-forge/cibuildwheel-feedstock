@@ -60,11 +60,12 @@ tests:
         - python ${{ python_min }}.*
     script:
       # Create dummy patchelf package for pip check
-      - mkdir -p $SP_DIR/patchelf
-      - echo "__version__='0.0.0'" > $SP_DIR/patchelf/__init__.py
-      - mkdir -p $SP_DIR/patchelf-0.0.0.dist-info
-      - echo "Metadata-Version: 2.1\nName: patchelf\nVersion: 0.0.0" > $SP_DIR/patchelf-0.0.0.dist-info/METADATA
-      - echo patchelf > $SP_DIR/patchelf-0.0.0.dist-info/top_level.txt
+      - >
+        mkdir -p $SP_DIR/patchelf &&
+        echo "__version__='0.0.0'" > $SP_DIR/patchelf/__init__.py &&
+        mkdir -p $SP_DIR/patchelf-0.0.0.dist-info &&
+        echo "Metadata-Version: 2.1\nName: patchelf\nVersion: 0.0.0" > $SP_DIR/patchelf-0.0.0.dist-info/METADATA &&
+        echo patchelf > $SP_DIR/patchelf-0.0.0.dist-info/top_level.txt
       - pip check
       - cibuildwheel --help
       - pytest test/test_dependency_versions.py
