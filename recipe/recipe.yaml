@@ -17,6 +17,7 @@ build:
   number: 1
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv
+  string: "{{ noarch_platform }}_h{{ PKG_HASH }}_{{ build }}"
   python:
     entry_points:
       - cibuildwheel = cibuildwheel.__main__:main
