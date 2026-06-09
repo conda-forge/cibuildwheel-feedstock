@@ -4,7 +4,6 @@ context:
   python_min: "3.11"
   name: cibuildwheel
   version: "4.0.0"
-  noarch_prefix: ${{ 'unix' if unix else 'win' }}
 
 package:
   name: ${{ name|lower }}
@@ -18,7 +17,6 @@ build:
   number: 1
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv
-  string: ${{ noarch_prefix }}_h${{ hash }}_${{ build }}
   python:
     entry_points:
       - cibuildwheel = cibuildwheel.__main__:main
