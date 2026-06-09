@@ -18,7 +18,6 @@ build:
   number: 1
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv
-  string: ${{ noarch_prefix }}_h${{ hash }}_${{ build }}
   python:
     entry_points:
       - cibuildwheel = cibuildwheel.__main__:main
@@ -38,7 +37,11 @@ requirements:
     - humanize
     - packaging
     - if: unix
-      then: patchelf
+      then:
+        - __unix
+        - patchelf
+      else:
+        - __win
     - platformdirs
     - pyelftools
     - python-build
