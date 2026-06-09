@@ -56,13 +56,9 @@ tests:
         - python-build
         - validate-pyproject
         - python ${{ python_min }}.*
+        - if: unix
+          then: patchelf
     script:
-      # Create dummy patchelf package for pip check
-      - >
-        export SP_DIR=$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])') &&
-        mkdir -p $SP_DIR/patchelf &&
-        mkdir -p $SP_DIR/patchelf-0.0.0.dist-info &&
-        echo -e "Metadata-Version: 2.1\nName: patchelf\nVersion: 0.0.0" > $SP_DIR/patchelf-0.0.0.dist-info/METADATA
       - pip check
       - cibuildwheel --help
       - pytest test/test_dependency_versions.py
