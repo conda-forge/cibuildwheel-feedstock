@@ -14,7 +14,7 @@ source:
   sha256: b25a4d281802b4363064000fc240e7b54a0387e26400b3ded9e1f8d23027b259
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv
   python:
@@ -35,7 +35,7 @@ requirements:
     - filelock
     - humanize
     - packaging
-    - patchelf
+    - patchelf  # [unix]
     - platformdirs
     - pyelftools
     - python-build
