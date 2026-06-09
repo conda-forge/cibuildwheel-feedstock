@@ -61,12 +61,14 @@ tests:
     script:
       - pip check
       - cibuildwheel --help
-      - if: unix  # 291.39s on Windows, currently all skipped on Linux
+      - if: unix  # ~290s on Windows (too slow), all skipped on Linux
         then: pytest test/test_dependency_versions.py
-      - pytest test/test_emulation.py
+      - pytest test/test_emulation.py  # 0.5s on Windows, all skipped on Linux
       - pytest test/test_macos_archs.py  # currently all skipped
       - pytest test/test_wheel_tag.py  # currently all skipped
-      - pytest test/test_windows.py  # 82.31s on Windows
+      # If we include this one, we get a "Access is denied. (os error 5)" when trying
+      # to clean up the tests:
+      # pytest test/test_windows.py  # 82.31s on Windows, all skipped on Linux
   - python:
       imports:
         - cibuildwheel
