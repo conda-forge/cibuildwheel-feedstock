@@ -61,11 +61,12 @@ tests:
     script:
       - pip check
       - cibuildwheel --help
-      - pytest test/test_dependency_versions.py
+      - if: unix  # 291.39s on Windows, currently all skipped on Linux
+        then: pytest test/test_dependency_versions.py
       - pytest test/test_emulation.py
-      - pytest test/test_macos_archs.py
-      - pytest test/test_wheel_tag.py
-      - pytest test/test_windows.py
+      - pytest test/test_macos_archs.py  # currently all skipped
+      - pytest test/test_wheel_tag.py  # currently all skipped
+      - pytest test/test_windows.py  # 82.31s on Windows
   - python:
       imports:
         - cibuildwheel
