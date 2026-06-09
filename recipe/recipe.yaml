@@ -36,7 +36,7 @@ requirements:
     - humanize
     - packaging
     - if: unix
-      then: 'patchelf'
+      then: patchelf
     - platformdirs
     - pyelftools
     - python-build
