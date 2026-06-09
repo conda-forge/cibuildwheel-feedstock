@@ -35,7 +35,8 @@ requirements:
     - filelock
     - humanize
     - packaging
-    - patchelf  # [unix]
+    - if: noarch_platform == "win_64"
+      then: patchelf
     - platformdirs
     - pyelftools
     - python-build
