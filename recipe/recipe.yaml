@@ -14,7 +14,7 @@ source:
   sha256: b25a4d281802b4363064000fc240e7b54a0387e26400b3ded9e1f8d23027b259
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv
   python:
@@ -35,7 +35,12 @@ requirements:
     - filelock
     - humanize
     - packaging
-    - patchelf
+    - if: unix
+      then:
+        - __unix
+        - patchelf
+      else:
+        - __win
     - platformdirs
     - pyelftools
     - python-build
@@ -55,20 +60,19 @@ tests:
         - python-build
         - validate-pyproject
         - python ${{ python_min }}.*
+        - if: unix
+          then: patchelf
     script:
-      # Create dummy patchelf package for pip check
-      - >
-        export SP_DIR=$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])') &&
-        mkdir -p $SP_DIR/patchelf &&
-        mkdir -p $SP_DIR/patchelf-0.0.0.dist-info &&
-        echo -e "Metadata-Version: 2.1\nName: patchelf\nVersion: 0.0.0" > $SP_DIR/patchelf-0.0.0.dist-info/METADATA
       - pip check
       - cibuildwheel --help
-      - pytest test/test_dependency_versions.py
-      - pytest test/test_emulation.py
-      - pytest test/test_macos_archs.py
-      - pytest test/test_wheel_tag.py
-      - pytest test/test_windows.py
+      - if: unix  # ~290s on Windows (too slow), all skipped on Linux
+        then: pytest test/test_dependency_versions.py
+      - pytest test/test_emulation.py  # 0.5s on Windows, all skipped on Linux
+      - pytest test/test_macos_archs.py  # currently all skipped
+      - pytest test/test_wheel_tag.py  # currently all skipped
+      # If we include this one, we get a "Access is denied. (os error 5)" when trying
+      # to clean up the tests:
+      # pytest test/test_windows.py  # 82.31s on Windows, all skipped on Linux
   - python:
       imports:
         - cibuildwheel
