@@ -3,7 +3,7 @@ schema_version: 1
 context:
   python_min: "3.11"
   name: cibuildwheel
-  version: "4.3.3"
+  version: "4.3.4"
 
 package:
   name: ${{ name|lower }}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/pypa/cibuildwheel/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: c2b348ae971580bf7ab2703928650ce5d9449d43d8f98ce3aac1b7dee200b909
+  sha256: cd2be438ae1bd359c093175513536ba4a328525dfa763565ddda60ccdd76f184
 
 build:
   number: 0
